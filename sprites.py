@@ -140,6 +140,12 @@ class Player(pygame.sprite.Sprite):
                     self.animation_loop = 1
 
 
+class Enemy(pygame.sprite.Sprite):
+    def __init__(self, game, x, y):
+        self.game = game
+        self._layer = EMEMY_LAYER
+
+
 class Block(pygame.sprite.Sprite):
     def __init__(self, game, x, y):
 
