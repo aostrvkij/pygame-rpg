@@ -24,7 +24,6 @@ class Game:
                 if column == 'P':
                     Player(self, j, i)
 
-
     def new(self):
         # new game start
         self.playing = True
