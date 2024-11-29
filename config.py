@@ -29,5 +29,4 @@ tilemap = [
     'B..........BBBBBB..B',
     'B..................B',
     'BBBBBBBBBBBBBBBBBBBB',
-
 ]
