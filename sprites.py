@@ -1,9 +1,7 @@
-
-import math
-import random
-
 from config import *
 import pygame
+import random
+import math
 
 
 class Spritesheet:
@@ -15,6 +13,7 @@ class Spritesheet:
         sprite.blit(self.sheet, (0, 0), (x, y, width, height))
         sprite.set_colorkey(BLACK)
         return sprite
+
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, game, x, y):
@@ -227,9 +226,6 @@ class Enemy(pygame.sprite.Sprite):
                     self.animation_loop = 1
 
 
-
-
-
 class Block(pygame.sprite.Sprite):
     def __init__(self, game, x, y):
 
@@ -248,6 +244,7 @@ class Block(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = self.x
         self.rect.y = self.y
+
 
 class Ground(pygame.sprite.Sprite):
     def __init__(self, game, x, y):
