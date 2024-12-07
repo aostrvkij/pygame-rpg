@@ -1,13 +1,8 @@
-from turtledemo.nim import SCREENWIDTH
-
 from sprites import *
 from config import *
 import pygame
 import sys
-import os
 
-
-#os.environ['SDL_VIDEO_WINDOW_POS'] = "%d, %d" % (0, 30)
 
 class Game:
     def __init__(self):
@@ -83,11 +78,10 @@ class Game:
             self.draw()
 
     def game_over(self):
-        text = self.font.render('Game Over', True, WHITE)
-        text_rect = text.get_rect(center=(WIN_WIDTH/2, WIN_HEIGHT/2))
-
-        restart_button = Button(10, WIN_HEIGHT - 60, 120, 50, WHITE, BLACK, 'Restart', 32)
-
+        #text = self.font.render('Game Over', True, WHITE)
+        #text_rect = text.get_rect(center=(WIN_WIDTH/2, WIN_HEIGHT/2))
+        restart_button = Button(x=WIN_WIDTH / 2 - 100, y=WIN_HEIGHT / 2 - 50, width=200, height=100, fg=BLACK, bg=GREY,
+                             content='PLAY', fontsize=32)
         for sprite in self.all_sprites:
             sprite.kill()
 
@@ -104,7 +98,7 @@ class Game:
                 self.main()
 
             self.screen.blit(self.go_background, (0, 0))
-            self.screen.blit(text, text_rect)
+            #self.screen.blit(text, text_rect)
             self.screen.blit(restart_button.image, restart_button.rect)
             pygame.display.update()
             self.clock.tick(FPS)
@@ -116,7 +110,8 @@ class Game:
 
 #        title = self.font.render('Awe Game', True, BLACK)
 #        title_rect = title.get_rect(x=10, y=10)
-        play_button = Button(x=WIN_WIDTH/2-100, y=WIN_HEIGHT/2-50, width=200, height=100, fg=BLACK, bg=GREY, content='PLAY', fontsize=32)
+        play_button = Button(x=WIN_WIDTH/2-100, y=WIN_HEIGHT/2-50, width=200, height=100, fg=BLACK, bg=GREY,
+                             content='PLAY', fontsize=32)
 
         while intro:
             for event in pygame.event.get():
