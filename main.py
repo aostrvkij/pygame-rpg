@@ -114,8 +114,10 @@ class Game:
     def intro_screen(self):
         intro = True
 
-#        title = self.font.render('Awe Game', True, BLACK)
-#        title_rect = title.get_rect(x=10, y=10)
+        title1 = self.font.render('SPACE - attack', True, WHITE)
+        title_rect1 = title1.get_rect(x=10, y=10)
+        title2 = self.font.render('V - shot', True, WHITE)
+        title_rect2 = title2.get_rect(x=10, y=35)
         play_button = Button(x=WIN_WIDTH/2-100, y=WIN_HEIGHT/2-50, width=200, height=100, fg=BLACK, bg=GREY,
                              content='PLAY', fontsize=32)
 
@@ -132,7 +134,8 @@ class Game:
                 intro = False
 
             self.screen.blit(self.intro_background, (0, 0))
-#            self.screen.blit(title, title_rect)
+            self.screen.blit(title1, title_rect1)
+            self.screen.blit(title2, title_rect2)
             self.screen.blit(play_button.image, play_button.rect)
             self.clock.tick(FPS)
             pygame.display.update()
