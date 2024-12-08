@@ -377,3 +377,64 @@ class Attack(pygame.sprite.Sprite):
             self.animation_loop += 0.5
             if self.animation_loop >= 5:
                 self.kill()
+
+
+class Shot(pygame.sprite.Sprite):
+    def __init__(self, game, x, y, facing):
+        self.game = game
+        self._layer = PLAYER_LAYER
+        self.groups = self.game.all_sprites, self.game.attacks
+        pygame.sprite.Sprite.__init__(self, self.groups)
+
+        self.width = TILESIZE
+        self.height = TILESIZE // 2
+
+        self.x = x
+        self.y = y
+
+        self.facing = facing
+
+        self.fireball = self.game.fireball_spritesheet.get_sprite(0, 0, 255, 135)
+
+        self.image = pygame.transform.scale(self.fireball, (self.width, self.height))
+
+        if self.facing == 'right':
+            self.image = pygame.transform.rotate(self.image, 0)
+        elif self.facing == 'left':
+            self.image = pygame.transform.rotate(self.image, 180)
+        elif self.facing == 'up':
+            self.image = pygame.transform.rotate(self.image, 90)
+        elif self.facing == 'down':
+            self.image = pygame.transform.rotate(self.image, -90)
+
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+
+        self.speed = 8
+
+    def update(self):
+        self.move()
+        self.collide()
+
+    def move(self):
+        if self.facing == 'right':
+            self.rect.x += self.speed
+        elif self.facing == 'left':
+            self.rect.x -= self.speed
+        elif self.facing == 'up':
+            self.rect.y -= self.speed
+        elif self.facing == 'down':
+            self.rect.y += self.speed
+
+    def collide(self):
+        hits = pygame.sprite.spritecollide(self, self.game.enemies, True)
+        if hits:
+            self.kill()
+
+        hits = pygame.sprite.spritecollide(self, self.game.blocks, False)
+        if hits:
+            self.kill()
+
+        if not self.game.screen.get_rect().colliderect(self.rect):
+            self.kill()

@@ -16,6 +16,7 @@ class Game:
         self.terrain_spritesheet = Spritesheet('img/terrain.png')
         self.enemy_spritesheet = Spritesheet('img/enemy.png')
         self.attack_spritesheet = Spritesheet('img/attack.png')
+        self.fireball_spritesheet = Spritesheet('img/fireball.png')
         self.intro_background = pygame.image.load('img/introbackground.png')
         self.go_background = pygame.image.load('img/introbackground.png')
 
@@ -58,6 +59,16 @@ class Game:
                         Attack(self, self.player.rect.x - TILESIZE, self.player.rect.y)
                     if self.player.facing == 'right':
                         Attack(self, self.player.rect.x + TILESIZE, self.player.rect.y)
+
+                if event.key == pygame.K_z:
+                    if self.player.facing == 'up':
+                        Shot(self, self.player.rect.centerx, self.player.rect.top, 'up')
+                    if self.player.facing == 'down':
+                        Shot(self, self.player.rect.centerx, self.player.rect.bottom, 'down')
+                    if self.player.facing == 'left':
+                        Shot(self, self.player.rect.left, self.player.rect.centery, 'left')
+                    if self.player.facing == 'right':
+                        Shot(self, self.player.rect.right, self.player.rect.centery, 'right')
 
     def update(self):
         # game loop updates
