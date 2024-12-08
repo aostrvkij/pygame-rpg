@@ -32,7 +32,6 @@ class Game:
                     self.player = Player(self, j, i)
 
     def new(self):
-        # new game start
         self.playing = True
 
         self.all_sprites = pygame.sprite.LayeredUpdates()
@@ -43,7 +42,6 @@ class Game:
         self.createTilemap()
 
     def events(self):
-        # game loop events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
@@ -60,7 +58,7 @@ class Game:
                     if self.player.facing == 'right':
                         Attack(self, self.player.rect.x + TILESIZE, self.player.rect.y)
 
-                if event.key == pygame.K_z:
+                if event.key == pygame.K_v:
                     if self.player.facing == 'up':
                         Shot(self, self.player.rect.centerx, self.player.rect.top, 'up')
                     if self.player.facing == 'down':
@@ -71,18 +69,15 @@ class Game:
                         Shot(self, self.player.rect.right, self.player.rect.centery, 'right')
 
     def update(self):
-        # game loop updates
         self.all_sprites.update()
 
     def draw(self):
-        # game loop draw
         self.screen.fill(BLACK)
         self.all_sprites.draw(self.screen)
         self.clock.tick(FPS)
         pygame.display.update()
 
     def main(self):
-        # game loop
         while self.playing:
             self.events()
             self.update()
